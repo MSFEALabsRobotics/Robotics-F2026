@@ -87,31 +87,6 @@ rqt_graph
 ```
 
 
-# Note about setuptools library
-Sometimes (depending on your system, hardware etc.), when building with colcon, an error related to python3 library setuptools is showing
-(ubuntu 22.04, Ros2 Humble), apparently version 59 of settup tools with ros humble, is causing the error.
-to solve this you can downgrade to version 58 of setuptools
-
-to list all python packages with their versions
-```bash
-pip3 list
-```
-
-to check the version of one package
-```bash
-pip3 list | grep packagename
-```
-
-for example
-```bash
-pip3 list | grep setuptools
-```
-
-to downgrade to a specific version
-```bash
-pip3 install packagename==version
-```
-
 for example
 ```bash
 pip3 install setuptools==58
@@ -149,81 +124,6 @@ node.get_logger().info("hello node")
 rclpy.shutdown()
 ```
 
-## Adding A function:  main
-
-
-```python
-# python code, to execute lines only if the current script is run by itself (not called in another script)
-
-#example of any function
-def main():
-    pass
-
-if __name__ == "__main__":
-    main() #calling the fucntion
-```
-
-# Structuring as a class
-
-
-```python
-# same example with main condition
-
-class AUBLAB():
-    def __init__(self):
-        self.a = 10
-
-    def SampleFunction(self, number):
-        self.b = self.a +number
-
-
-if __name__ == "__main__":
-    
-    MyLab = AUBLAB()
-    MyLab.SampleFunction(10)
-    print(MyLab.b)
-```
-
-# Constructing the class based on the rclpy Node class
-
-
-```python
-#python defining a class based on another one, and using super inside the init function, so the "self" object will represent this type of class
-import rclpy
-from rclpy.node import Node
-
-
-#create a class passing the Node class as argument
-class MyNode(Node):
-
-    #node initiation function
-    def __init__(self):
-        #consturcting the node, self object will be representing the Node class
-        super().__init__("pyNode1")
-```
-
-```python
-#ROS2 node, written in python, displayed as a function that can be built
-
-import rclpy
-from rclpy.node import Node
-
-def main():
-    #start Ros communication
-    rclpy.init()
-
-    #define a node, give it a name (node constructor)
-    node = Node("pyNode1")
-
-    #output something with the node
-    node.get_logger().info("hello node")
-
-    #keeps the node spinning (keep your program running)
-    rclpy.spin(node)
-
-    #shutdown ros communication
-    rclpy.shutdown()
-```
 
 # Complete Ros2 Node structured as a class
 
