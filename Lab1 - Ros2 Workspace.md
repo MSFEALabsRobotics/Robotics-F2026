@@ -1,7 +1,17 @@
 
-## Lab 1 — ROS 2 Basics
+# Lab 1 — ROS 2 Basics
 
-I'll help arrange this into a more organized format with proper bash code blocks for Jupiter notebook usage:
+## Installing Colcon Package Builder
+
+```bash
+sudo apt install python3-colcon-common-extensions
+```
+
+For Colcon autocompletion (using tab key):
+- Source the following in each new terminal or add it at the end of `~/.bashrc` file:
+```bash
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+```
 
 # ROS2 Packages
 
@@ -56,7 +66,8 @@ colcon build --packages-select <package_name>
 
 # ROS2 Nodes
 
-![image.png](attachment:image.png)
+<img width="597" height="335" alt="image" src="https://github.com/user-attachments/assets/9b7f5cb9-bd34-40b2-ab9a-feb2eef647d3" />
+
 
 
 # ROS2 Node Commands
