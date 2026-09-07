@@ -5,18 +5,6 @@ I'll help arrange this into a more organized format with proper bash code blocks
 
 # ROS2 Packages
 
-## Installing Colcon Package Builder
-
-```bash
-sudo apt install python3-colcon-common-extensions
-```
-
-For Colcon autocompletion (using tab key):
-- Source the following in each new terminal or add it at the end of `~/.bashrc` file:
-```bash
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-```
-
 #### Creating a Workspace (a main folder to manage ROS packages)
 - It consists of the folder and a `src` subfolder, which will contain the packages:
 ```bash
