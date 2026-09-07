@@ -184,28 +184,6 @@ entry_points={
 },
 ```
 
-# Launching 2 instances of a same node
-
-# Node Information and Naming
-
-To check info about a node
-```bash
-ros2 node info /nodename
-```
-
-this will show info about publishers and subscribers too
-
-you can launch two nodes with the same name in ros2
-(you would get a warning in ros2 node list)
-
-to change a node name at run time (use same node, multiple times with different names)
-run the node with additional arguments:
-- `--ros-args` means you are supplying an argument to the node
-- `-r __node:=newnodename` is used to remap (supply the new name, as argument)
-
-```bash
-ros2 run packagename nodename --ros-args -r __node:=abc
-```
 
 
 # colcon notes
