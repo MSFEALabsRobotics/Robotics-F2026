@@ -1,3 +1,18 @@
+# Robotics — Tentative Schedule
+
+| Session | Topic |
+|---|---|
+| 1 | Getting Started / System Setup |
+| 2 | ROS Nodes |
+| 3 | Dobot Introduction — Safety + GUI |
+| 4 | Dobot with ROS |
+| 5 | ROS Advanced — URDF + RViz + MoveIt |
+| 6 | Computer Vision — Camera Basics + QR Code Detection |
+| 7 | LLMs + Agentic Control |
+| 8 | Robot Dog + Nav2 *(preferably integrated)* |
+| 9 | Reinforcement Learning 1 / Reinforcement Learning 2 *(two different sessions within the same week: Monday and Wednesday)* |
+| 9.1 | Students continue working on Reinforcement Learning during the remaining time of the semester, and possibly during lecture time. |
+| 10 | Project — to be launched approximately one month before the end of the semester. |
 
 
 # Install WSL2 + ROS 2 Humble and Verify It Works (Minimal)
