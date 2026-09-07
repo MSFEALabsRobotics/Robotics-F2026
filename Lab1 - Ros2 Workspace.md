@@ -1,4 +1,42 @@
 
+# WSL Setup Guide
+
+---
+
+## 🖥️ Install WSL
+```bash
+wsl --install --no-distribution
+```
+
+### In Case WSL could be installed because of virtulization setting, check below troubleshooting to enable it
+
+
+---
+
+## 📂 Create a New Folder
+```bash
+mkdir "C:\WSL\MyNewImage"
+```
+
+---
+
+## 📦 Import the Tar Image
+```bash
+wsl --import MyNewImage "FolderPath" "ImagePath"
+```
+
+**Example:**
+```bash
+wsl --import MyNewImage "C:\WSL\MyNewImage" "C:\Users\samer\mywsl.tar"
+```
+
+Check available images:
+```bash
+wsl --list
+```
+
+
+
 # Lab 1 — ROS 2 Basics
 
 ## Installing Colcon Package Builder
