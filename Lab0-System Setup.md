@@ -7,11 +7,11 @@ Goal: **Windows → WSL2 → Ubuntu 22.04 → ROS 2 Humble → quick test**
 
 # Download link
 ```bash
-[https://mailaub-my.sharepoint.com/:u:/g/personal/sb137_aub_edu_lb/IQCerJnz6Og8RqhTFreyDS3OAaqov5ECG3k7Nll88U48lsE?e=tciPLo](https://mailaub-my.sharepoint.com/:u:/g/personal/sb137_aub_edu_lb/IQCuGZtIeEwyTrmKv76ediiVAdvtMH73BHDwPcQjRdvohNA?e=YQ8xuk)
+https://mailaub-my.sharepoint.com/:u:/g/personal/sb137_aub_edu_lb/IQCuGZtIeEwyTrmKv76ediiVAdvtMH73BHDwPcQjRdvohNA?e=YQ8xuk
 ```
-<img width="718" height="596" alt="image" src="https://github.com/user-attachments/assets/b63f5d29-ee2a-440b-9d49-14c5535e6deb" /># System Architechture
 
 
+https://mailaub-my.sharepoint.com/:u:/g/personal/sb137_aub_edu_lb/IQCuGZtIeEwyTrmKv76ediiVAdvtMH73BHDwPcQjRdvohNA?e=YQ8xuk
 
 ## Link to download image (instead of doing the below)
 
