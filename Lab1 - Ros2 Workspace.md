@@ -68,7 +68,7 @@ rqt_graph
 
 # ROS2 Packages
 
-#### Creating a Workspace (a main folder to manage ROS packages)
+## Creating a Workspace (a main folder to manage ROS packages)
 - It consists of the folder and a `src` subfolder, which will contain the packages:
 ```bash
 mkdir ~/ros2_ws/
@@ -92,7 +92,7 @@ colcon build
 source ~/ros2_ws/install/setup.bash
 ```
 
-#### Creating a Python Package
+## Creating a Python Package
 1. Change directory to your `src` folder:
 ```bash
 cd src
