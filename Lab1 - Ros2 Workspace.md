@@ -48,14 +48,19 @@ wsl --list
 
 ### Running rqt
 
-> `rqt_graph`
+```bash
+rqt_graph
+```
 
 ### Examples
 
-> `ros2 run demo_nodes_cpp talker`
+```bash
+ros2 run demo_nodes_cpp talker
+```
 
-> `ros2 run demo_nodes_py listener`
-
+```bash
+ros2 run demo_nodes_py listener
+```
 
 
 # ROS2 Packages
