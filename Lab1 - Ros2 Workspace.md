@@ -20,7 +20,7 @@ mkdir "C:\WSL\MyNewImage"
 
 ---
 
-## 📦 Import the Tar Image
+## 📦 Import the Tar Image  (Replace Path with your values)
 ```bash
 wsl --import MyNewImage "FolderPath" "ImagePath"
 ```
@@ -39,17 +39,24 @@ wsl --list
 
 # Lab 1 — ROS 2 Basics
 
-## Installing Colcon Package Builder
+## ROS1 Distributions:
+> [ROS1 Distributions](http://wiki.ros.org/Distributions)
 
-```bash
-sudo apt install python3-colcon-common-extensions
-```
+## ROS2 Distributions:
+> [ROS2 Releases](https://docs.ros.org/en/rolling/Releases.html)
 
-For Colcon autocompletion (using tab key):
-- Source the following in each new terminal or add it at the end of `~/.bashrc` file:
-```bash
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-```
+
+### Running rqt
+
+> `rqt_graph`
+
+### Examples
+
+> `ros2 run demo_nodes_cpp talker`
+
+> `ros2 run demo_nodes_py listener`
+
+
 
 # ROS2 Packages
 
