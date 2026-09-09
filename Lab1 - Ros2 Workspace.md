@@ -237,8 +237,9 @@ if __name__ == "__main__":
     main()
 ```
 
+## modify the setup.py file of the package to install/build the ros2 node (creates executables)
+
 ```bash
-# modify the setup.py file of the package to install/build the ros2 node (creates executables)
 
 entry_points={
     'console_scripts': [
