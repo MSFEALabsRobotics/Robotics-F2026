@@ -46,13 +46,9 @@ wsl --list
 > [ROS2 Releases](https://docs.ros.org/en/rolling/Releases.html)
 
 
-### Running rqt
 
-```bash
-rqt_graph
-```
 
-### Examples
+### Examples of Ros nodes
 
 ```bash
 ros2 run demo_nodes_cpp talker
@@ -60,6 +56,13 @@ ros2 run demo_nodes_cpp talker
 
 ```bash
 ros2 run demo_nodes_py listener
+```
+
+
+### Running rqt graph node
+
+```bash
+rqt_graph
 ```
 
 
