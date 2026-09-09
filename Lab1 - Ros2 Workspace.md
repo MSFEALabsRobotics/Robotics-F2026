@@ -272,9 +272,9 @@ you can also right click the file, properties, permissions, and set it to execut
 ---
 
 
-## Lab 3 — Publishers, Subscribers, Services
+# Publishers, Subscribers, Services
 
-# Timers, Calback Functions
+## Timers, Calback Functions
 
 
 ```bash
