@@ -20,11 +20,6 @@
 Goal: **Windows → WSL2 → Ubuntu 22.04 → ROS 2 Humble → quick test**
 
 
-# Download link for the image (instead of doing the below)
-
-
-https://mailaub-my.sharepoint.com/:u:/g/personal/sb137_aub_edu_lb/IQCuGZtIeEwyTrmKv76ediiVAdvtMH73BHDwPcQjRdvohNA?e=YQ8xuk
-
 ## Link to download image (instead of doing the below)
 
 
