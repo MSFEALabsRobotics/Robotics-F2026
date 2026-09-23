@@ -191,11 +191,9 @@ def main():
     node = MyNode()
 
     #keeps the ros communication spinning (keep your program running)
-    try:
-      rclpy.spin(node)
+    rclpy.spin(node)
     
     #destroy node (optional, to be cleared in the backround or it will be done by garbage collector
-    except key 
     node.destroy_node()
 
     #shutdown ros communication
