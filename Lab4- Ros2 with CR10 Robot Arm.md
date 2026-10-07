@@ -89,7 +89,7 @@ ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ```
 ### 5.2 Robot Bringup
 ```bash
-ros2 launch cr_robot_ros2 dobot_bringup_ros2.launch.py
+ros2 launch dobot_bringup_v4 dobot_bringup_ros2.launch.py
 ```
 
 ---
