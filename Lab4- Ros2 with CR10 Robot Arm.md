@@ -24,6 +24,7 @@ sudo apt install build-essential cmake g++ python3-colcon-common-extensions
 Install packages often needed for robot visualization:
 
 ```bash
+sudo apt install ros-humble-moveit
 sudo apt install ros-humble-xacro
 sudo apt install ros-humble-joint-state-publisher
 sudo apt install ros-humble-joint-state-publisher-gui
