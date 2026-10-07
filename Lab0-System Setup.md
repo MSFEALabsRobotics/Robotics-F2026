@@ -15,6 +15,13 @@
 | 10 | Project — to be launched approximately one month before the end of the semester. |
 
 
+# Download link for the image
+
+
+[https://mailaub-my.sharepoint.com/:u:/g/personal/sb137_aub_edu_lb/IQCuGZtIeEwyTrmKv76ediiVAdvtMH73BHDwPcQjRdvohNA?e=YQ8xuk](https://mailaub-my.sharepoint.com/:u:/g/personal/sb137_aub_edu_lb/IQCUc7fHkpMXRbISulhEcYBqAV84fVOhGZjS7FddUMMX26M?e=RVLhfZ)
+
+# Below you can prepare the image yourself
+
 # Install WSL2 + ROS 2 Humble and Verify It Works (Minimal)
 
 Goal: **Windows → WSL2 → Ubuntu 22.04 → ROS 2 Humble → quick test**
