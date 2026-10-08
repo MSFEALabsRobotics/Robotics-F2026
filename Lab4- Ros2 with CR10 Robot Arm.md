@@ -208,6 +208,11 @@ class MinimalClientAsync(Node):
         return self.future.result()
 
 
+
+
+## Python Client Simplified
+
+
 def main(args=None):
     rclpy.init(args=args)
 
@@ -231,6 +236,47 @@ if __name__ == '__main__':
 ```    
 
 
+## Python Client simplified
+
+
+
+```python
+
+
+import time
+import rclpy
+from dobot_msgs_v4.srv import EnableRobot, DisableRobot
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = rclpy.create_node('robot_control')
+
+    enable = node.create_client(EnableRobot, '/dobot_bringup_ros2/srv/EnableRobot')
+    disable = node.create_client(DisableRobot, '/dobot_bringup_ros2/srv/DisableRobot')
+
+
+    #Call The Service And Wait for the responce
+    enable.wait_for_service()
+    future = enable.call_async(EnableRobot.Request())
+    rclpy.spin_until_future_complete(node, future)
+
+    time.sleep(2)
+
+    disable.wait_for_service()
+    future = disable.call_async(DisableRobot.Request())
+    rclpy.spin_until_future_complete(node, future)
+
+
+    node.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+
+
+```
 
 
 ## 11) Exercise 1 — Pick & Place (ROS)
