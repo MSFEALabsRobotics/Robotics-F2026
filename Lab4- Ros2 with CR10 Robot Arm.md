@@ -176,6 +176,7 @@ ros2 service call /dobot_bringup_ros2/srv/MovJ dobot_msgs_v4/srv/MovJ "{mode: tr
 
 ```python
 
+#Import the Message
 from dobot_msgs_v4.srv import DisableRobot
 
 import rclpy
@@ -186,11 +187,19 @@ class MinimalClientAsync(Node):
 
     def __init__(self):
         super().__init__('minimal_client_async')
+        
+        #Create the CLient  with specific message and service name
         self.cli = self.create_client(DisableRobot, '/dobot_bringup_ros2/srv/DisableRobot')
+        
+        #Protection Function
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
+        
+        #Call the Function That does the request
         self.req = DisableRobot.Request()
 
+
+    #The function that is requesting
     def send_request(self):  # (self, a, b):
         # self.req.a = a
         # self.req.b = b
@@ -203,12 +212,17 @@ def main(args=None):
     rclpy.init(args=args)
 
     minimal_client = MinimalClientAsync()
+
+    #Calling the function that is requesting
     response = minimal_client.send_request()
 
 
     minimal_client.destroy_node()
     rclpy.shutdown()
 
+
+if __name__ == '__main__':
+    main()
 
 if __name__ == '__main__':
     main()
