@@ -1,19 +1,20 @@
-# Unitree Go2 — ROS 2 Connection and Motion Test
+# Unitree Go2 — ROS 2 Test in Your Existing Workspace
+
+Use your existing `~/ros2_ws` workspace to install the Unitree message packages, read robot state, and send basic motion commands.
 
 **Target:** Ubuntu 22.04 with ROS 2 Humble already installed.
 
 **Official repository:**  
 https://github.com/unitreerobotics/unitree_ros2
 
-This guide installs the message packages on your computer, connects to the robot, and tests basic commands. Nothing is installed on the dog.
-
-> These instructions follow Unitree’s ROS source but have not been tested on this lab’s robot.
-> The robot must expose its Ethernet DDS interface and have its sport service running.
-> Do not use these Humble installation commands inside a Jazzy environment.
+> Your existing workspace must also use Humble for these commands.
+> Do not source Humble into a Jazzy workspace.
+> The robot must expose Ethernet DDS access and have its sport service running.
+> These instructions have not been tested on your robot.
 
 ## 1. Install dependencies — once
 
-Use a terminal without the previous Python virtual environment active.
+Open a terminal without the previous Python virtual environment active.
 
 ```bash
 source /opt/ros/humble/setup.bash
@@ -29,15 +30,23 @@ sudo apt install -y \
     libyaml-cpp-dev
 ```
 
-For Humble, a separate CycloneDDS source build is not needed for this setup.
+For this Humble setup, a separate CycloneDDS source build is not needed.
 
-## 2. Build the Unitree message packages — once
+## 2. Add Unitree to your existing workspace — once
 
 ```bash
-cd ~
-git clone https://github.com/unitreerobotics/unitree_ros2.git
+mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws/src
 
-cd ~/unitree_ros2/cyclonedds_ws
+git clone https://github.com/unitreerobotics/unitree_ros2.git
+```
+
+If Unitree packages are already present inside this workspace, reuse them rather than creating duplicate packages.
+
+Although the repository contains an internal workspace folder, build from your existing workspace root:
+
+```bash
+cd ~/ros2_ws
 
 source /opt/ros/humble/setup.bash
 
@@ -45,12 +54,12 @@ colcon build --symlink-install \
     --packages-up-to unitree_go unitree_api
 ```
 
-If the repository already exists, reuse it instead of cloning again.
+Colcon discovers the packages inside the cloned repository.
 
-Load the packages:
+Load your workspace:
 
 ```bash
-source ~/unitree_ros2/cyclonedds_ws/install/setup.bash
+source ~/ros2_ws/install/setup.bash
 ```
 
 Verify:
@@ -60,31 +69,31 @@ ros2 pkg prefix unitree_go
 ros2 pkg prefix unitree_api
 ```
 
-Both commands should print installation paths.
+Both commands should print paths inside your workspace’s installation.
 
 | Package | Purpose |
 |---|---|
 | `unitree_go` | Interpret robot-state messages |
 | `unitree_api` | Construct motion requests and interpret responses |
 
-You do not rebuild every time you connect.
+You do not rebuild each time you connect.
 
-## 3. Connect Ethernet and set the computer IP
+## 3. Connect Ethernet and configure the computer IP
 
 Connect the computer to the Go2 using Ethernet.
 
-Find the interface:
+Find the network interface:
 
 ```bash
 ip -br link
 ip -br -4 addr
 ```
 
-An interface might be named `enp3s0` or `enx001122334455`.
+Examples include `enp3s0` and `enx001122334455`.
 
-In Ubuntu, open:
+Open:
 
-**Settings → Network → Wired connection settings → IPv4 → Manual**
+**Ubuntu Settings → Network → Wired connection settings → IPv4 → Manual**
 
 Enter:
 
@@ -95,10 +104,10 @@ Enter:
 | Gateway | Leave blank |
 | DNS | Leave blank for this connection |
 
-Apply and reconnect the wired connection.
+Apply and reconnect Ethernet.
 
-> This is the computer’s IP, not the robot’s IP.
-> Use your lab’s assigned address if different. Computers sharing the network need unique addresses.
+> This is the computer’s address, not the robot’s address.
+> Use your lab’s assigned settings if different. Computers sharing the network need unique addresses.
 
 Verify, replacing `enp3s0` with your actual interface:
 
@@ -112,23 +121,29 @@ Look for:
 192.168.123.99/24
 ```
 
-## 4. Create a reusable setup file — once
+## 4. Create the Go2 environment file — once
+
+Save the setup file in your existing workspace:
 
 ```bash
-mkdir -p ~/go2_lab
-nano ~/go2_lab/setup_go2_ros2.sh
+nano ~/ros2_ws/setup_go2_ros2.sh
 ```
 
-Paste the following. **Change `enp3s0` to your Ethernet interface.**
+Paste the following.
+
+**Replace `enp3s0` with the Ethernet interface connected to the robot.**
 
 ```bash
+# Load ROS and the existing workspace.
 source /opt/ros/humble/setup.bash
-source "$HOME/unitree_ros2/cyclonedds_ws/install/setup.bash"
+source "$HOME/ros2_ws/install/setup.bash"
 
+# DDS settings for direct Go2 communication.
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 export ROS_DOMAIN_ID=0
 export ROS_LOCALHOST_ONLY=0
 
+# Select the Ethernet interface connected to the robot.
 export CYCLONEDDS_URI='<CycloneDDS>
   <Domain>
     <General>
@@ -144,12 +159,15 @@ export CYCLONEDDS_URI='<CycloneDDS>
 
 Save with **Ctrl+O**, press **Enter**, then exit with **Ctrl+X**.
 
-## 5. Load the environment and discover topics
+> Source this file only in terminals intended for the Go2.
+> Its DDS settings select the robot’s Ethernet interface.
+
+## 5. Discover the robot’s topics
 
 Power on the robot and wait for startup.
 
 ```bash
-source ~/go2_lab/setup_go2_ros2.sh
+source ~/ros2_ws/setup_go2_ros2.sh
 
 ros2 daemon stop
 ros2 daemon start
@@ -166,13 +184,13 @@ Look for topics such as:
 /api/sport/response
 ```
 
-The available topics depend on firmware and active services.
+Availability depends on firmware and active services.
 
-> You can discover topic names without the Unitree message packages.
-> Reading or publishing their custom messages requires the packages.
-> No additional driver launch is needed for this direct DDS test.
+You can discover topic names without the Unitree message packages. Reading and publishing their custom messages requires the packages.
 
-## 6. Read robot state before testing motion
+No additional driver launch is needed for this direct DDS test.
+
+## 6. Read robot state
 
 If `/sportmodestate` is listed:
 
@@ -183,7 +201,7 @@ ros2 topic echo /sportmodestate \
     --once
 ```
 
-If only `/lf/sportmodestate` is available:
+If your robot exposes `/lf/sportmodestate` instead:
 
 ```bash
 ros2 topic echo /lf/sportmodestate \
@@ -192,17 +210,17 @@ ros2 topic echo /lf/sportmodestate \
     --once
 ```
 
-**Success:** a state message appears containing fields such as position, velocity, and IMU information.
+**Success:** a state message appears with fields such as position, velocity, and IMU information.
 
-If neither command receives data, resolve the connection before proceeding.
+Resolve connection problems before attempting motion.
 
-## 7. Test basic commands
+## 7. Test stop and posture commands
 
 Before sending commands:
 
 - Place the robot on a clear, level floor.
 - Keep the remote ready and know its stop procedure.
-- Keep slack in the Ethernet cable.
+- Leave slack in the Ethernet cable.
 - Stop other motion-control programs.
 - Keep the high-level sport service enabled.
 
@@ -239,12 +257,12 @@ ros2 topic pub --once \
     '{header: {identity: {api_id: 1005}}, parameter: "{}"}'
 ```
 
-> ROS reporting that a message was published does not prove the robot accepted or completed the command.
+> “Publishing” confirms that ROS sent a message. It does not prove the robot accepted or completed the action.
 
 To inspect responses, open another terminal:
 
 ```bash
-source ~/go2_lab/setup_go2_ros2.sh
+source ~/ros2_ws/setup_go2_ros2.sh
 
 ros2 topic echo /api/sport/response \
     unitree_api/msg/Response \
@@ -255,13 +273,13 @@ ros2 topic echo /api/sport/response \
 
 First stand the robot up and confirm it is ready to walk.
 
-This test sends a forward velocity of `0.1 m/s` approximately 20 times over 2 seconds, then attempts to send a stop.
+This test sends a forward velocity of `0.1 m/s` approximately 20 times over 2 seconds, then attempts a stop.
 
 Paste the entire block into a terminal:
 
 ```bash
 (
-    source ~/go2_lab/setup_go2_ros2.sh
+    source ~/ros2_ws/setup_go2_ros2.sh
 
     read -r -p "Robot standing, area clear, remote ready? Type GO: " answer
     if [ "$answer" != "GO" ]; then
@@ -303,21 +321,22 @@ The outer timeout also limits waiting for DDS discovery.
 
 This controls velocity, not exact travel distance.
 
-**Ctrl+C attempts cleanup, but a disconnected cable or failed process can prevent the stop from reaching the robot. The remote remains necessary.**
+**A disconnected cable or failed process can prevent the stop from reaching the robot. Keep the remote ready.**
 
 ## 9. Troubleshooting
 
 | Problem | Check |
 |---|---|
 | No robot topics | Ethernet address, interface name, DDS domain, robot DDS access |
-| Package not found | Build succeeded and workspace was sourced |
+| Package not found | Build succeeded and `~/ros2_ws/install/setup.bash` was sourced |
+| Duplicate package error | Keep only one copy of each Unitree package inside the workspace |
 | Topics appear but no state data | Actual topic name and endpoint QoS |
 | Publisher waits for a subscriber | Robot sport service and DDS connectivity |
 | Messages publish but no movement | Robot mode, response messages, competing controllers |
-| `/cmd_vel` does nothing | This direct interface uses `/api/sport/request`; `/cmd_vel` needs a bridge |
-| Old settings remain active | Source the setup file and restart the ROS daemon |
+| `/cmd_vel` does nothing | This interface uses `/api/sport/request`; `/cmd_vel` needs a bridge |
+| Old discovery settings remain active | Source the setup file and restart the ROS daemon |
 
-Inspect a topic’s endpoints:
+Inspect motion-topic endpoints:
 
 ```bash
 ros2 topic info /api/sport/request --verbose
@@ -325,19 +344,19 @@ ros2 topic info /api/sport/request --verbose
 
 ## 10. Next session
 
-The installation and build are already complete.
-
-Simply connect Ethernet, power on the robot, then run:
+Connect Ethernet, power on the robot, and run:
 
 ```bash
-source ~/go2_lab/setup_go2_ros2.sh
+source ~/ros2_ws/setup_go2_ros2.sh
 ros2 topic list -t
 ```
 
 Verify state reception before sending motion commands.
 
-## Sources
+**No rebuild is needed unless package sources or build dependencies change.**
+
+## References
 
 - [Official Unitree ROS 2 repository](https://github.com/unitreerobotics/unitree_ros2)
-- [Motion operation IDs and ROS publisher](https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/include/common/ros2_sport_client.h)
+- [Motion IDs and ROS publisher](https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/include/common/ros2_sport_client.h)
 - [Motion parameter implementation](https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/common/ros2_sport_client.cpp)
