@@ -1,3 +1,6 @@
+<img width="1055" height="1491" alt="image" src="https://github.com/user-attachments/assets/50ce672e-0dd7-45e3-ae33-6329d13375b6" />
+
+
 
 # Robotics Assignment: QR Code Tracking Using ROS 2 and CR10 Robot
 
