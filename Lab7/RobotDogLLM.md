@@ -219,7 +219,7 @@ if updated_xml="$(python3 - <<'PY'
 import xml.etree.ElementTree as ET
 
 # Replace these with the fresh Jetson discovery results.
-robot_ports = [[32936, 33678, 35268, 35630, 35930, 36036, 36575, 37415, 37488, 40512, 40762, 42069, 42957, 43129, 43898, 44125, 44520, 45428, 45825, 46768, 54646, 59763, 60950]
+robot_ports = [32936, 33678, 35268, 35630, 35930, 36036, 36575, 37415, 37488, 40512, 40762, 42069, 42957, 43129, 43898, 44125, 44520, 45428, 45825, 46768, 54646, 59763, 60950]
 jetson_ports = [50600, 58756, 60098, 60906]
 
 if not robot_ports or not jetson_ports:
