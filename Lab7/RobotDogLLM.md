@@ -21,7 +21,7 @@ Connect the Windows computer to the robot network before discovery and testing:
 | Setting | Value |
 | --- | --- |
 | Wi-Fi SSID | `RLIL` |
-| Wi-Fi password | `unitree123` |
+| Wi-Fi password | `unitree1` |
 | Windows IP on the robot network | `192.168.123.87` |
 | Windows gateway IP toward WSL | `172.28.176.1` |
 | WSL IP | `172.28.185.55` |
