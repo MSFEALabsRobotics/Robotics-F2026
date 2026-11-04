@@ -109,6 +109,8 @@ Use a WSL terminal with ROS 2 and the Unitree workspace sourced.
 Paste the complete block below into the WSL terminal:
 
 ```bash
+ros2 daemon stop
+
 export ROS_DOMAIN_ID=0
 export ROS_LOCALHOST_ONLY=0
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
@@ -121,8 +123,8 @@ import sys
 from xml.sax.saxutils import quoteattr
 
 # Paste the latest discovery results here.
-robot_ports = []
-jetson_ports = []
+robot_ports = [32986, 35386, 35999, 36564, 36881, 39231, 40424, 40555, 41350, 46088, 46350, 46489, 46650, 48930, 50786, 51828, 52586, 53567, 55045, 56126, 58171, 60632, 60925]
+jetson_ports = [33115, 43074, 45467, 48400, 54244]
 
 if not robot_ports or not jetson_ports:
     raise SystemExit("Fill robot_ports and jetson_ports first.")
