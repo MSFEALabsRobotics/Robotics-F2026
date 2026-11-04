@@ -6,10 +6,7 @@ Use the prepared ROS 2 Humble workspace with CycloneDDS and the Unitree packages
 
 Connect the computer to the robot network. Set the IPv4 address of the Windows network adapter used for this connection to the static address assigned in the lab, on the `192.168.123.x` subnet. Do not use an address already assigned to another device.
 
-The scripts below use:
 
-- Robot: `192.168.123.161`
-- Jetson: `192.168.123.18`
 
 **Windows static IP settings: photo to be added.**
 
