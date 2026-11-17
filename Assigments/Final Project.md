@@ -1,5 +1,5 @@
 
-<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/c574ba11-8f93-4c54-bfb3-67f808d7d49e" />
+<img width="1671" height="941" alt="image" src="https://github.com/user-attachments/assets/b5a696eb-69d0-4085-a5ec-1e10ea2ab604" />
 
 
 # Robotics Final Project – Autonomous Snack Bar and Delivery Challenge
