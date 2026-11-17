@@ -1,3 +1,7 @@
+
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/c574ba11-8f93-4c54-bfb3-67f808d7d49e" />
+
+
 # Robotics Final Project – Autonomous Drink Preparation and Delivery Challenge
 
 ## 1. Project Overview
